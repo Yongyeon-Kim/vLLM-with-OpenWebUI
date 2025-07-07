@@ -13,7 +13,7 @@
 .
 ├── docker-compose.yml     # vLLM + Open WebUI 실행 환경 정의
 ├── Dockerfile             # vLLM 실행 환경용 커스텀 이미지
-├── open-webui/            # Open WebUI 소스 코드
+├── open-webui/            # Open Web UI 소스 코드
 └── vllm/                  # vLLM 소스 코드
 ```
 
@@ -47,24 +47,27 @@ docker compose up
 ### 📌 `docker-compose.yml` 주요 옵션
 
 #### vllm 서비스
-| 항목 | 설명 |
-|------|------|
-| `--model` | 로컬에 저장된 SFT 모델 경로 지정 |
-| `--gpu-memory-utilization` | GPU 메모리 사용률 제한 |
-| `--kv-cache-dtype` | 캐시 데이터 형식 (예: fp8, fp16 등) |
+
+| 항목                       | 설명                                |
+| -------------------------- | ----------------------------------- |
+| `--model`                  | 로컬에 저장된 SFT 모델 경로 지정    |
+| `--gpu-memory-utilization` | GPU 메모리 사용률 제한              |
+| `--kv-cache-dtype`         | 캐시 데이터 형식 (예: fp8, fp16 등) |
 
 #### open-webui 서비스
-| 환경변수 | 설명 |
-|----------|------|
-| `OPENAI_API_BASE_URL` | vLLM API 경로 지정 |
-| `USE_CUDA_DOCKER` | Docker 내 GPU 사용 설정 |
-| `WEBUI_SECRET_KEY` | 인증 키 (간단히 EMPTY로 설정 가능) |
+
+| 환경변수              | 설명                               |
+| --------------------- | ---------------------------------- |
+| `OPENAI_API_BASE_URL` | vLLM API 경로 지정                 |
+| `USE_CUDA_DOCKER`     | Docker 내 GPU 사용 설정            |
+| `WEBUI_SECRET_KEY`    | 인증 키 (간단히 EMPTY로 설정 가능) |
 
 ---
 
 ## 💾 모델 경로 예시
 
 로컬 모델 경로 예:
+
 ```
 ../model/output/gemma-2-9b_sft_1e-5_instruct/checkpoint-1875
 ```
@@ -75,8 +78,8 @@ docker compose up
 
 ## ✅ 사전 요구 사항
 
-- Docker 및 Docker Compose 설치  
-- NVIDIA GPU 사용 시 [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/) 설치 필요  
+- Docker 및 Docker Compose 설치
+- NVIDIA GPU 사용 시 [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/) 설치 필요
 - 로컬에 변환된 모델(`gguf` 또는 HF 포맷 SFT 모델) 준비
 
 ---
@@ -101,6 +104,6 @@ http://localhost:8080
 
 ## 📜 라이선스
 
-- vLLM: Apache 2.0  
-- Open WebUI: Apache 2.0  
+- vLLM: Apache 2.0
+- Open WebUI: Apache 2.0
 - 본 프로젝트는 연구 및 개발 용도로 구성되었습니다.

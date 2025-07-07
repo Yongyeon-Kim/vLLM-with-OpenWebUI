@@ -2,6 +2,9 @@ version: "3.8"
 
 services:
   vllm:
+    build:
+      context: .
+      dockerfile: Dockerfile # 또는 Dockerfile.vllm 등
     image: vllm-env
     container_name: vllm-chat-api
     restart: always
@@ -9,13 +12,13 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ../model/output/:/model/
+      - ../model/base/:/model/
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
     command: >
       python -m vllm.entrypoints.openai.api_server
-      --model /model/gemma-2-9b_sft_1e-5_instruct/checkpoint-1875
+      --model /model/kanana-1.5-8b-instruct-2505
       --port 8000 
       --max-model-len 2048
       --tensor-parallel-size 1 
